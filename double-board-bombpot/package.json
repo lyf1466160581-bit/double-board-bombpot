@@ -1,0 +1,13 @@
+{
+  "name": "double-board-bombpot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "双人双牌面 Bomb Pot 在线娱乐版（虚拟筹码）",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test test/*.test.js"
+  },
+  "engines": { "node": ">=20" },
+  "dependencies": {}
+}

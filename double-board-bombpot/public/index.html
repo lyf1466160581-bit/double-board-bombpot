@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#081a16">
+  <meta name="description" content="双人 Double Board Bomb Pot，私人房间、实时联机、纯娱乐虚拟筹码。">
+  <title>Double Board · 双牌面 Bomb Pot</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <header class="topbar">
+    <a href="/" class="brand"><span class="brand-mark">♠<span>♦</span></span><span><b>DUAL BOARD</b><small>BOMB POT · 双牌面扑克</small></span></a>
+    <span class="pill" id="connection-pill"><span class="dot"></span><span id="connection-label">娱乐筹码 · 无真钱</span></span>
+  </header>
+
+  <main id="home" class="home">
+    <section class="hero">
+      <div class="eyebrow">HEADS-UP · DOUBLE BOARD · ONLINE</div>
+      <h1>两个人，<br><em>两组牌。</em></h1>
+      <p>创建私人牌桌，发链接给朋友。上、下两组公共牌同时进行，底池分别结算。无需注册，电脑和手机都能玩。</p>
+      <div class="hero-metrics"><span><b>02</b><small>私人双人房</small></span><span><b>02</b><small>独立牌面</small></span><span><b>∞</b><small>免费娱乐局</small></span></div>
+    </section>
+    <section class="entry-panel">
+      <div class="entry-head"><div class="kicker">YOUR TABLE AWAITS</div><h2>加入牌桌</h2><p>两分钟就能开局。只使用虚拟筹码。</p></div>
+      <div class="tabs"><button id="tab-create" class="tab active" type="button">创建新房间</button><button id="tab-join" class="tab" type="button">加入朋友房间</button></div>
+      <form id="entry-form">
+        <label for="nickname">你的昵称</label><input id="nickname" maxlength="16" placeholder="例如：Player 1" required autocomplete="nickname">
+        <div id="create-fields"><label for="mode">牌局类型</label><div class="select-wrap"><select id="mode"><option value="holdem">德州 · 每人 2 张底牌</option><option value="omaha">奥马哈 · 每人 4 张底牌</option></select></div><p class="field-note">两种模式都是双牌面 Bomb Pot，跳过翻牌前下注。</p></div>
+        <div id="join-fields" hidden><label for="room-input">六位房间号</label><input id="room-input" maxlength="6" placeholder="例如 ABC234" autocomplete="off" autocapitalize="characters"></div>
+        <button id="entry-submit" class="btn btn-main" type="submit">创建私人房间 <span>→</span></button>
+        <p id="entry-error" class="error" role="alert"></p>
+      </form>
+      <div class="security-note">✧ 所有发牌、胜负和筹码计算均由服务器完成</div>
+    </section>
+  </main>
+
+  <main id="game" class="game-wrap" hidden>
+    <div class="room-toolbar">
+      <div><div class="kicker">PRIVATE POKER ROOM</div><div class="room-label">房间 <strong id="room-code">------</strong> <span id="round-label" class="round-label">等待玩家</span></div></div>
+      <div class="room-controls"><button id="copy-link" class="btn btn-outline">复制邀请链接</button><button id="leave-room" class="btn btn-ghost">返回首页</button></div>
+    </div>
+    <div class="play-grid">
+      <section class="poker-table-wrap">
+        <div class="table-outer">
+          <div class="table-felt">
+            <div class="felt-inner">
+              <div class="seat enemy-seat"><div class="avatar" id="opponent-avatar">?</div><div class="seat-copy"><b id="opponent-name">等待朋友加入...</b><span id="opponent-stack">分享房间链接邀请</span></div><span class="seat-marker" id="opponent-marker"></span></div>
+              <div class="opponent-hole" id="opponent-hole"></div>
+              <div class="board-zone">
+                <div class="board-label"><span>A</span><span>上牌面</span><i></i></div>
+                <div class="board-cards" id="board-top"></div>
+                <div class="pot-display"><span class="pot-coin">◈</span><div><small>TOTAL POT</small><b id="pot-total">0</b></div></div>
+                <div class="board-label"><span>B</span><span>下牌面</span><i></i></div>
+                <div class="board-cards" id="board-bottom"></div>
+              </div>
+              <div class="seat your-seat"><div class="avatar avatar-you" id="your-avatar">你</div><div class="seat-copy"><b id="your-name">你</b><span id="your-stack">1,000 筹码</span></div><span class="seat-marker" id="your-marker"></span></div>
+              <div class="your-hole" id="your-hole"></div>
+            </div>
+          </div>
+        </div>
+        <div class="table-caption"><span id="street-label">双牌面</span><span id="turn-status">等待第二位玩家</span></div>
+        <section class="action-panel" id="action-panel"><div class="waiting"><span class="spinner"></span> 等待玩家...</div></section>
+      </section>
+      <aside class="sidebar">
+        <section class="side-panel"><div class="side-head"><h3>牌局信息</h3><span>TABLE INFO</span></div><div class="info-row"><span>玩法</span><b id="info-mode">双牌面德州</b></div><div class="info-row"><span>初始筹码</span><b>1,000</b></div><div class="info-row"><span>每人底注</span><b>20</b></div><div class="info-row"><span>底池分配</span><b>上下各 50%</b></div><div class="rule-tip">两人强制投入底注，直接发出上下各 3 张翻牌。随后正常下注、转牌、河牌、摊牌。奥马哈必须恰好使用 2 张底牌 + 3 张公共牌。</div></section>
+        <section class="side-panel logs"><div class="side-head"><h3>本局记录</h3><span>HAND HISTORY</span></div><div id="hand-log" class="log-list"><p>开局后将在这里显示操作记录。</p></div></section>
+      </aside>
+    </div>
+    <footer class="footer-note">仅用于朋友间娱乐 · 虚拟筹码 · 不支持充值、提现或真钱下注</footer>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+# Replace play.example.com with YOUR real DNS domain, pointed to this server.
+play.example.com {
+    encode zstd gzip
+    reverse_proxy game:3000
+}
